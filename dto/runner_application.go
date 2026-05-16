@@ -9,6 +9,16 @@ const (
 	VehicleTypeBicycle   = "bicycle"
 )
 
+// Pet experience constants for RunnerApplicationRequest.
+const (
+	PetExperienceDogs      = "dogs"
+	PetExperienceCats      = "cats"
+	PetExperienceBirds     = "birds"
+	PetExperienceFish      = "fish"
+	PetExperienceSmallPets = "small_pets"
+	PetExperienceVetTrips  = "vet_trips"
+)
+
 // RunnerApplicationRequest is the request body for the runner application form.
 // It captures personal details, vehicle information, pet experience, and
 // consent acknowledgment collected by the iOS apply form.
@@ -43,6 +53,15 @@ func (r RunnerApplicationRequest) Validate() error {
 	}
 	if r.PlateNumber == "" {
 		return fmt.Errorf("plateNumber is required")
+	}
+	for _, exp := range r.PetExperience {
+		switch exp {
+		case PetExperienceDogs, PetExperienceCats, PetExperienceBirds,
+			PetExperienceFish, PetExperienceSmallPets, PetExperienceVetTrips:
+			// valid
+		default:
+			return fmt.Errorf("petExperience entries must be one of: dogs, cats, birds, fish, small_pets, vet_trips")
+		}
 	}
 	if !r.ConsentAcknowledged {
 		return fmt.Errorf("consent must be acknowledged")

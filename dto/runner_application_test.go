@@ -15,7 +15,7 @@ func TestRunnerApplicationRequest_JSONRoundTrip(t *testing.T) {
 			ICNumber:                "900101-14-5678",
 			VehicleType:             VehicleTypeMotorbike,
 			PlateNumber:             "WXY1234",
-			PetExperience:           []string{"dogs", "cats"},
+			PetExperience:           []string{PetExperienceDogs, PetExperienceCats},
 			ComfortableWithLivePets: true,
 			ConsentAcknowledged:     true,
 		}
@@ -150,6 +150,18 @@ func TestRunnerApplicationRequest_RequiredFields(t *testing.T) {
 		}
 		if !strings.Contains(err.Error(), "consent") {
 			t.Errorf("expected error to mention 'consent', got: %v", err)
+		}
+	})
+
+	t.Run("invalid_pet_experience", func(t *testing.T) {
+		r := valid
+		r.PetExperience = []string{"dogs", "unicorns"}
+		err := r.Validate()
+		if err == nil {
+			t.Fatal("expected error for invalid petExperience entry, got nil")
+		}
+		if !strings.Contains(err.Error(), "petExperience") {
+			t.Errorf("expected error to mention 'petExperience', got: %v", err)
 		}
 	})
 }
