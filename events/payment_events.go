@@ -15,6 +15,7 @@ const (
 	PaymentEscrowHeld     = "payment.escrow_held"
 	PaymentEscrowReleased = "payment.escrow_released"
 	PaymentEscrowRefunded = "payment.escrow_refunded"
+	CreditDisbursed       = "payment.credit_disbursed"
 	PaymentFailed         = "payment.failed"
 )
 
@@ -40,13 +41,13 @@ type EscrowHeldEvent struct {
 
 // EscrowReleasedEvent is published when funds are released to the runner.
 type EscrowReleasedEvent struct {
-	PaymentID       uuid.UUID `json:"payment_id"`
-	BookingID       uuid.UUID `json:"booking_id"`
-	RunnerID        uuid.UUID `json:"runner_id"`
-	RunnerPayout    int64     `json:"runner_payout_cents"`
-	PlatformFee     int64     `json:"platform_fee_cents"`
-	Currency        string    `json:"currency"`
-	OccurredAt      time.Time `json:"occurred_at"`
+	PaymentID    uuid.UUID `json:"payment_id"`
+	BookingID    uuid.UUID `json:"booking_id"`
+	RunnerID     uuid.UUID `json:"runner_id"`
+	RunnerPayout int64     `json:"runner_payout_cents"`
+	PlatformFee  int64     `json:"platform_fee_cents"`
+	Currency     string    `json:"currency"`
+	OccurredAt   time.Time `json:"occurred_at"`
 }
 
 // EscrowRefundedEvent is published when funds are refunded to the owner.
@@ -57,6 +58,15 @@ type EscrowRefundedEvent struct {
 	AmountCents  int64     `json:"amount_cents"`
 	Currency     string    `json:"currency"`
 	RefundReason string    `json:"refund_reason"`
+	OccurredAt   time.Time `json:"occurred_at"`
+}
+
+// CreditDisbursedEvent is published when a non-escrow loyalty credit is paid out.
+type CreditDisbursedEvent struct {
+	RedemptionID uuid.UUID `json:"redemption_id"`
+	UserID       uuid.UUID `json:"user_id"`
+	AmountCents  int64     `json:"amount_cents"`
+	Currency     string    `json:"currency"`
 	OccurredAt   time.Time `json:"occurred_at"`
 }
 
