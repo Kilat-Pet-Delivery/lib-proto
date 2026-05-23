@@ -16,6 +16,13 @@ const (
 	PaymentEscrowReleased = "payment.escrow_released"
 	PaymentEscrowRefunded = "payment.escrow_refunded"
 	PaymentFailed         = "payment.failed"
+
+	// Shop wallet withdrawal lifecycle (Plan C). Routed on the existing
+	// TopicPaymentEvents topic and consumed by service-notification and
+	// service-shop.
+	WithdrawalRequested = "payment.withdrawal_requested"
+	WithdrawalPaid      = "payment.withdrawal_paid"
+	WithdrawalFailed    = "payment.withdrawal_failed"
 )
 
 // EscrowCreatedEvent is published when a payment escrow is initiated.
@@ -66,4 +73,39 @@ type PaymentFailedEvent struct {
 	BookingID  uuid.UUID `json:"booking_id"`
 	Reason     string    `json:"reason"`
 	OccurredAt time.Time `json:"occurred_at"`
+}
+
+// WithdrawalRequestedEvent is published when a shop owner submits a
+// withdrawal against their available wallet balance.
+type WithdrawalRequestedEvent struct {
+	WithdrawalID  uuid.UUID `json:"withdrawal_id"`
+	ShopID        uuid.UUID `json:"shop_id"`
+	RequestedBy   uuid.UUID `json:"requested_by_user_id"`
+	AmountCents   int64     `json:"amount_cents"`
+	Currency      string    `json:"currency"`
+	DestinationID string    `json:"destination_id"`
+	OccurredAt    time.Time `json:"occurred_at"`
+}
+
+// WithdrawalPaidEvent is published when the payout processor confirms the
+// withdrawal landed in the destination bank account.
+type WithdrawalPaidEvent struct {
+	WithdrawalID uuid.UUID `json:"withdrawal_id"`
+	ShopID       uuid.UUID `json:"shop_id"`
+	AmountCents  int64     `json:"amount_cents"`
+	Currency     string    `json:"currency"`
+	ProcessorRef string    `json:"processor_ref,omitempty"`
+	OccurredAt   time.Time `json:"occurred_at"`
+}
+
+// WithdrawalFailedEvent is published when the payout processor reports a
+// terminal failure; service-payment reverses the held funds back into the
+// shop wallet's available balance.
+type WithdrawalFailedEvent struct {
+	WithdrawalID uuid.UUID `json:"withdrawal_id"`
+	ShopID       uuid.UUID `json:"shop_id"`
+	AmountCents  int64     `json:"amount_cents"`
+	Currency     string    `json:"currency"`
+	Reason       string    `json:"reason"`
+	OccurredAt   time.Time `json:"occurred_at"`
 }
