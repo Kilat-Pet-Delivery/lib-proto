@@ -19,6 +19,13 @@ const (
 	BookingDeliveryConfirmed = "booking.delivery_confirmed"
 	BookingCompleted      = "booking.completed"
 	BookingCancelled      = "booking.cancelled"
+
+	// Shop-side substates introduced by Plan C. Routed on the existing
+	// TopicBookingEvents topic; consumed by service-shop, service-tracking,
+	// service-notification, and the api-gateway.
+	BookingAcceptedByShop = "booking.accepted_by_shop"
+	BookingPreparing      = "booking.preparing"
+	BookingReadyForPickup = "booking.ready_for_pickup"
 )
 
 // BookingRequestedEvent is published when an owner creates a new booking.
@@ -84,4 +91,35 @@ type BookingCancelledEvent struct {
 	CancelledBy   uuid.UUID  `json:"cancelled_by"`
 	Reason        string     `json:"reason"`
 	OccurredAt    time.Time  `json:"occurred_at"`
+}
+
+// BookingAcceptedByShopEvent is published when a shop owner/manager accepts
+// an incoming shop-fulfilled booking. Triggers shop-side preparation flow.
+type BookingAcceptedByShopEvent struct {
+	BookingID     uuid.UUID `json:"booking_id"`
+	BookingNumber string    `json:"booking_number"`
+	ShopID        uuid.UUID `json:"shop_id"`
+	AcceptedBy    uuid.UUID `json:"accepted_by_user_id"`
+	OccurredAt    time.Time `json:"occurred_at"`
+}
+
+// BookingPreparingEvent is published when shop staff transition a booking
+// into the preparing state (order is being assembled).
+type BookingPreparingEvent struct {
+	BookingID     uuid.UUID `json:"booking_id"`
+	BookingNumber string    `json:"booking_number"`
+	ShopID        uuid.UUID `json:"shop_id"`
+	StartedBy     uuid.UUID `json:"started_by_user_id"`
+	OccurredAt    time.Time `json:"occurred_at"`
+}
+
+// BookingReadyForPickupEvent is published when the shop signals the order is
+// staged and ready for runner pickup. Includes the QR pickup token so that
+// service-tracking / service-notification can surface it to the runner.
+type BookingReadyForPickupEvent struct {
+	BookingID     uuid.UUID `json:"booking_id"`
+	BookingNumber string    `json:"booking_number"`
+	ShopID        uuid.UUID `json:"shop_id"`
+	QRPickupToken string    `json:"qr_pickup_token"`
+	OccurredAt    time.Time `json:"occurred_at"`
 }
