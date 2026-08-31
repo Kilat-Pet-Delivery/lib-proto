@@ -47,13 +47,13 @@ type EscrowHeldEvent struct {
 
 // EscrowReleasedEvent is published when funds are released to the runner.
 type EscrowReleasedEvent struct {
-	PaymentID       uuid.UUID `json:"payment_id"`
-	BookingID       uuid.UUID `json:"booking_id"`
-	RunnerID        uuid.UUID `json:"runner_id"`
-	RunnerPayout    int64     `json:"runner_payout_cents"`
-	PlatformFee     int64     `json:"platform_fee_cents"`
-	Currency        string    `json:"currency"`
-	OccurredAt      time.Time `json:"occurred_at"`
+	PaymentID    uuid.UUID `json:"payment_id"`
+	BookingID    uuid.UUID `json:"booking_id"`
+	RunnerID     uuid.UUID `json:"runner_id"`
+	RunnerPayout int64     `json:"runner_payout_cents"`
+	PlatformFee  int64     `json:"platform_fee_cents"`
+	Currency     string    `json:"currency"`
+	OccurredAt   time.Time `json:"occurred_at"`
 }
 
 // EscrowRefundedEvent is published when funds are refunded to the owner.

@@ -76,10 +76,10 @@ func Test_ShopCategory_JSONRoundTrip(t *testing.T) {
 
 func Test_CreateShopRequest_Validate(t *testing.T) {
 	tests := []struct {
-		name      string
-		req       CreateShopRequest
-		wantErr   bool
-		errField  string
+		name     string
+		req      CreateShopRequest
+		wantErr  bool
+		errField string
 	}{
 		{
 			name: "happy path",

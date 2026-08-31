@@ -4,11 +4,11 @@ import "fmt"
 
 // Decline reason constants for DeclineBookingRequest.
 const (
-	DeclineReasonTooFar           = "too_far"
-	DeclineReasonCannotTransport  = "cannot_transport"
-	DeclineReasonAlreadyBusy      = "already_busy"
-	DeclineReasonPickupIssue      = "pickup_issue"
-	DeclineReasonOther            = "other"
+	DeclineReasonTooFar          = "too_far"
+	DeclineReasonCannotTransport = "cannot_transport"
+	DeclineReasonAlreadyBusy     = "already_busy"
+	DeclineReasonPickupIssue     = "pickup_issue"
+	DeclineReasonOther           = "other"
 )
 
 // DeclineBookingRequest is the request body sent when a runner declines a booking.

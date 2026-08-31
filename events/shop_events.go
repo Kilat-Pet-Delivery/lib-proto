@@ -44,13 +44,13 @@ type ShopStatusChangedEvent struct {
 // ShopStaffInvitedEvent is published when an owner or manager dispatches a
 // staff invite. Consumed by service-notification to send the invite email/SMS.
 type ShopStaffInvitedEvent struct {
-	InviteID  uuid.UUID `json:"invite_id"`
-	ShopID    uuid.UUID `json:"shop_id"`
-	InviterID uuid.UUID `json:"inviter_user_id"`
-	Email     string    `json:"email,omitempty"`
-	Phone     string    `json:"phone,omitempty"`
-	Role      string    `json:"role"`
-	Token     string    `json:"token"`
+	InviteID   uuid.UUID `json:"invite_id"`
+	ShopID     uuid.UUID `json:"shop_id"`
+	InviterID  uuid.UUID `json:"inviter_user_id"`
+	Email      string    `json:"email,omitempty"`
+	Phone      string    `json:"phone,omitempty"`
+	Role       string    `json:"role"`
+	Token      string    `json:"token"`
 	OccurredAt time.Time `json:"occurred_at"`
 }
 

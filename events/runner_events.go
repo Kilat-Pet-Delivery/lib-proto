@@ -33,14 +33,14 @@ type RunnerOfflineEvent struct {
 
 // RunnerLocationUpdateEvent is published on each GPS ping from the runner.
 type RunnerLocationUpdateEvent struct {
-	RunnerID   uuid.UUID `json:"runner_id"`
+	RunnerID   uuid.UUID  `json:"runner_id"`
 	BookingID  *uuid.UUID `json:"booking_id,omitempty"`
-	Latitude   float64   `json:"latitude"`
-	Longitude  float64   `json:"longitude"`
-	Speed      float64   `json:"speed_kmh"`
-	Heading    float64   `json:"heading_degrees"`
-	Timestamp  time.Time `json:"timestamp"`
-	OccurredAt time.Time `json:"occurred_at"`
+	Latitude   float64    `json:"latitude"`
+	Longitude  float64    `json:"longitude"`
+	Speed      float64    `json:"speed_kmh"`
+	Heading    float64    `json:"heading_degrees"`
+	Timestamp  time.Time  `json:"timestamp"`
+	OccurredAt time.Time  `json:"occurred_at"`
 }
 
 // RunnerAssignedEvent is published when a runner is assigned to a booking.
