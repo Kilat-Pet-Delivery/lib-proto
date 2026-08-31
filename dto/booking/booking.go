@@ -78,12 +78,12 @@ func ParseBookingStatus(s string) (BookingStatus, error) {
 // shape lets consumers also nil it out before re-serialization without
 // having to know about a sentinel value.
 type BookingDTO struct {
-	ID             string        `json:"id"`
-	BookingNumber  string        `json:"booking_number"`
-	OwnerID        string        `json:"owner_id"`
-	RunnerID       *string       `json:"runner_id,omitempty"`
-	ShopID         *string       `json:"shop_id,omitempty"`
-	Status         BookingStatus `json:"status"`
-	QRPickupToken  *string       `json:"qr_pickup_token,omitempty"`
-	Notes          string        `json:"notes,omitempty"`
+	ID            string        `json:"id"`
+	BookingNumber string        `json:"booking_number"`
+	OwnerID       string        `json:"owner_id"`
+	RunnerID      *string       `json:"runner_id,omitempty"`
+	ShopID        *string       `json:"shop_id,omitempty"`
+	Status        BookingStatus `json:"status"`
+	QRPickupToken *string       `json:"qr_pickup_token,omitempty"`
+	Notes         string        `json:"notes,omitempty"`
 }

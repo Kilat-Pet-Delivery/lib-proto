@@ -63,14 +63,14 @@ type AddressDTO struct {
 
 // PetSpecDTO represents a pet specification in requests/responses.
 type PetSpecDTO struct {
-	PetType      string              `json:"pet_type" binding:"required"`
-	Breed        string              `json:"breed"`
-	Name         string              `json:"name" binding:"required"`
-	WeightKg     float64             `json:"weight_kg" binding:"required"`
-	Age          int                 `json:"age_months"`
-	Vaccinations []VaccinationDTO    `json:"vaccinations"`
-	SpecialNeeds string              `json:"special_needs"`
-	PhotoURL     string              `json:"photo_url"`
+	PetType      string           `json:"pet_type" binding:"required"`
+	Breed        string           `json:"breed"`
+	Name         string           `json:"name" binding:"required"`
+	WeightKg     float64          `json:"weight_kg" binding:"required"`
+	Age          int              `json:"age_months"`
+	Vaccinations []VaccinationDTO `json:"vaccinations"`
+	SpecialNeeds string           `json:"special_needs"`
+	PhotoURL     string           `json:"photo_url"`
 }
 
 // VaccinationDTO represents a vaccination record.

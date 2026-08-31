@@ -43,18 +43,18 @@ type ShopWalletLedgerEntryDTO struct {
 
 // WithdrawalDTO is the response representation of a withdrawal request.
 type WithdrawalDTO struct {
-	ID               uuid.UUID  `json:"id"`
-	ShopID           uuid.UUID  `json:"shop_id"`
-	AmountCents      int64      `json:"amount_cents"`
-	Currency         string     `json:"currency"`
-	Status           string     `json:"status"`
-	DestinationID    string     `json:"destination_id"`
-	FailureReason    string     `json:"failure_reason,omitempty"`
-	ProcessorRef     string     `json:"processor_ref,omitempty"`
-	RequestedAt      time.Time  `json:"requested_at"`
-	ProcessingAt     *time.Time `json:"processing_at,omitempty"`
-	PaidAt           *time.Time `json:"paid_at,omitempty"`
-	FailedAt         *time.Time `json:"failed_at,omitempty"`
+	ID            uuid.UUID  `json:"id"`
+	ShopID        uuid.UUID  `json:"shop_id"`
+	AmountCents   int64      `json:"amount_cents"`
+	Currency      string     `json:"currency"`
+	Status        string     `json:"status"`
+	DestinationID string     `json:"destination_id"`
+	FailureReason string     `json:"failure_reason,omitempty"`
+	ProcessorRef  string     `json:"processor_ref,omitempty"`
+	RequestedAt   time.Time  `json:"requested_at"`
+	ProcessingAt  *time.Time `json:"processing_at,omitempty"`
+	PaidAt        *time.Time `json:"paid_at,omitempty"`
+	FailedAt      *time.Time `json:"failed_at,omitempty"`
 }
 
 // WithdrawRequest is the request body sent by a shop owner to draw down

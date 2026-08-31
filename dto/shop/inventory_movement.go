@@ -21,15 +21,15 @@ const (
 // ledger entry. ChangeAmount is signed: positive for restocks/returns,
 // negative for sales/damage.
 type InventoryMovementDTO struct {
-	ID            uuid.UUID `json:"id"`
-	ProductID     uuid.UUID `json:"product_id"`
-	ShopID        uuid.UUID `json:"shop_id"`
-	Reason        string    `json:"reason"`
-	ChangeAmount  int64     `json:"change_amount"`
-	BalanceAfter  int64     `json:"balance_after"`
-	Note          string    `json:"note,omitempty"`
-	ActorUserID   uuid.UUID `json:"actor_user_id"`
-	OccurredAt    time.Time `json:"occurred_at"`
+	ID           uuid.UUID `json:"id"`
+	ProductID    uuid.UUID `json:"product_id"`
+	ShopID       uuid.UUID `json:"shop_id"`
+	Reason       string    `json:"reason"`
+	ChangeAmount int64     `json:"change_amount"`
+	BalanceAfter int64     `json:"balance_after"`
+	Note         string    `json:"note,omitempty"`
+	ActorUserID  uuid.UUID `json:"actor_user_id"`
+	OccurredAt   time.Time `json:"occurred_at"`
 }
 
 // IsValidInventoryMovementReason returns true when r is one of the five

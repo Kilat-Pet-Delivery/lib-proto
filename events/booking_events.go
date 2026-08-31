@@ -11,14 +11,14 @@ const TopicBookingEvents = "booking.events"
 
 // Booking event types.
 const (
-	BookingRequested      = "booking.requested"
-	BookingAccepted       = "booking.accepted"
-	BookingRunnerMatched  = "booking.runner_matched"
-	BookingPetPickedUp    = "booking.pet_picked_up"
-	BookingDeliveryInProg = "booking.delivery_in_progress"
+	BookingRequested         = "booking.requested"
+	BookingAccepted          = "booking.accepted"
+	BookingRunnerMatched     = "booking.runner_matched"
+	BookingPetPickedUp       = "booking.pet_picked_up"
+	BookingDeliveryInProg    = "booking.delivery_in_progress"
 	BookingDeliveryConfirmed = "booking.delivery_confirmed"
-	BookingCompleted      = "booking.completed"
-	BookingCancelled      = "booking.cancelled"
+	BookingCompleted         = "booking.completed"
+	BookingCancelled         = "booking.cancelled"
 
 	// Shop-side substates introduced by Plan C. Routed on the existing
 	// TopicBookingEvents topic; consumed by service-shop, service-tracking,
@@ -86,11 +86,11 @@ type BookingCompletedEvent struct {
 
 // BookingCancelledEvent is published when a booking is cancelled.
 type BookingCancelledEvent struct {
-	BookingID     uuid.UUID  `json:"booking_id"`
-	BookingNumber string     `json:"booking_number"`
-	CancelledBy   uuid.UUID  `json:"cancelled_by"`
-	Reason        string     `json:"reason"`
-	OccurredAt    time.Time  `json:"occurred_at"`
+	BookingID     uuid.UUID `json:"booking_id"`
+	BookingNumber string    `json:"booking_number"`
+	CancelledBy   uuid.UUID `json:"cancelled_by"`
+	Reason        string    `json:"reason"`
+	OccurredAt    time.Time `json:"occurred_at"`
 }
 
 // BookingAcceptedByShopEvent is published when a shop owner/manager accepts

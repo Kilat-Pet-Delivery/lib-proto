@@ -28,19 +28,19 @@ const (
 
 // ShopDTO is the response representation of a shop aggregate.
 type ShopDTO struct {
-	ID           uuid.UUID  `json:"id"`
-	OwnerUserID  uuid.UUID  `json:"owner_user_id"`
-	Name         string     `json:"name"`
-	Slug         string     `json:"slug"`
-	Address      string     `json:"address"`
-	Latitude     float64    `json:"latitude"`
-	Longitude    float64    `json:"longitude"`
-	Phone        string     `json:"phone"`
-	Category     string     `json:"category"`
-	Status       string     `json:"status"`
-	AutoCloseAt  *time.Time `json:"auto_close_at,omitempty"`
-	CreatedAt    time.Time  `json:"created_at"`
-	UpdatedAt    time.Time  `json:"updated_at"`
+	ID          uuid.UUID  `json:"id"`
+	OwnerUserID uuid.UUID  `json:"owner_user_id"`
+	Name        string     `json:"name"`
+	Slug        string     `json:"slug"`
+	Address     string     `json:"address"`
+	Latitude    float64    `json:"latitude"`
+	Longitude   float64    `json:"longitude"`
+	Phone       string     `json:"phone"`
+	Category    string     `json:"category"`
+	Status      string     `json:"status"`
+	AutoCloseAt *time.Time `json:"auto_close_at,omitempty"`
+	CreatedAt   time.Time  `json:"created_at"`
+	UpdatedAt   time.Time  `json:"updated_at"`
 }
 
 // CreateShopRequest is the request body for shop self-registration by an owner.
